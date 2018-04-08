@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.Iterator;
+import java.util.Map;
 
 //test hash is 99017f6eebbac24f351415dd410d522d
 
@@ -21,8 +23,8 @@ public class New02 extends JPanel implements ActionListener
 		btnIcon = new JButton("Retrieve report");
 		btnIcon.addActionListener(this);
 		
-		lblName.setBounds(10,20,120,25);
-		txtName.setBounds(150,20,150,25);
+		lblName.setBounds(10,20,191,25);
+		txtName.setBounds(202,19,271,25);
 		btnIcon.setBounds(120,100,150,30);
 		
 		//Add labels to the Panel.
@@ -43,23 +45,32 @@ public class New02 extends JPanel implements ActionListener
 	{
 		if (actEvt.getSource() == btnIcon)
 		{
-			String phonenum = txtName.getText();
+			String checksum = txtName.getText();
 			try {
-				newreq.sendGet(phonenum);
-				respBody.append("Phone number valid: " + RestAPIClient01.valid + "\n");
-				respBody.append("Local format: " + RestAPIClient01.localformat + "\n");
-				respBody.append("International format: " + RestAPIClient01.intformat + "\n");
-				respBody.append("Location: " + RestAPIClient01.location + "\n");
-				respBody.append("Carrier: " + RestAPIClient01.carrier + "\n");
-				respBody.append("Countrycode: " + RestAPIClient01.countrycode + "\n");
-				respBody.append("Linetype: " + RestAPIClient01.linetype + "\n");
+				newreq.sendGet(checksum);
+				respBody.append("Report found: " + RestAPIClient01.message + "\n");
+				respBody.append("Response code: " + RestAPIClient01.responsecode + "\n");
+				respBody.append("Verbose message: " + RestAPIClient01.verbosemsg + "\n");
+				respBody.append("Resource searched for: " + RestAPIClient01.resource + "\n");
+				respBody.append("Md5: " + RestAPIClient01.md5 + "\n");
+				respBody.append("Sha1: " + RestAPIClient01.sha1 + "\n");
+				respBody.append("Sha256: " + RestAPIClient01.sha256 + "\n");
+				respBody.append("Scandate: " + RestAPIClient01.scandate + "\n");
+				respBody.append("Permalink: " + RestAPIClient01.permalink + "\n");
+				respBody.append("Positive: " + RestAPIClient01.positive + "\n");
+				respBody.append("Total: " + RestAPIClient01.total + "\n");
+				respBody.append("% of AVs that detected: " + RestAPIClient01.percent + "\n");
+				Iterator<Map.Entry> itr1 = RestAPIClient01.avs.entrySet().iterator();
+		        while (itr1.hasNext()) {
+		            Map.Entry pair = itr1.next();
+		            respBody.append(pair.getKey() + " : " + pair.getValue() + "\n");
+		            //System.out.println(pair.getKey() + " : " + pair.getValue());
+		        }
 				
 				
 			} catch (Exception e) {
 				System.out.println(e + " Exception thrown.");
 			}
-			// output can go here ?
-			//taRemarks.append("Carrier: " + newreq.sendGet(phonenum).Number;)
 			
 		}
 	}
