@@ -25,7 +25,7 @@ public class New02 extends JPanel implements ActionListener
 		
 		lblName.setBounds(10,20,191,25);
 		txtName.setBounds(202,19,271,25);
-		btnIcon.setBounds(120,100,150,30);
+		btnIcon.setBounds(189,100,150,30);
 		
 		//Add labels to the Panel.
 		add(lblName);
@@ -33,7 +33,7 @@ public class New02 extends JPanel implements ActionListener
 		add(btnIcon);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(30, 140, 330, 129);
+		scrollPane.setBounds(10, 142, 485, 174);
 		add(scrollPane);
 		respBody = new JTextArea(10,10);
 		scrollPane.setViewportView(respBody);

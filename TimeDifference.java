@@ -1,36 +1,17 @@
-
-import java.time.DateTimeException;
-import java.time.Instant;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.Period;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.time.temporal.ChronoUnit;
 
 public class TimeDifference {
 	public static LocalDateTime now;
-	public static String nowdateText;
 	public static LocalDateTime DateTimeTwo;
 	public static LocalDateTime NewDateTime;
 	public static int hr;
 	public static int mn;
 	public static Period time;
-		
-	public static void FormatNow() throws DateTimeException{
-		now = LocalDateTime.now();
-		try {
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy HH:mm:ss");
-            nowdateText = now.format(formatter);
-		} catch (DateTimeException exc) {
-			System.out.printf("%s can't be formatted!%n", now);
-            throw exc;
-		}
-	}
-	public static void FormatDateString(String DateTimeTwo) throws DateTimeParseException{
+	
+	public static LocalDateTime FormatDateString(String DateTimeTwo) throws DateTimeParseException{
 		 try {
 	            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 	            NewDateTime = LocalDateTime.parse(DateTimeTwo, formatter);
@@ -38,23 +19,31 @@ public class TimeDifference {
 	            System.out.printf("%s is not parsable!%n", NewDateTime);
 	            throw exc;
 	        }
+		 return NewDateTime;
 	}
 	
-	public static void TimeDiffer() {
-		   hr = now.getHour() - NewDateTime.getHour();
+	public static Period TimeDiffer(LocalDateTime a, LocalDateTime b) {
+		   hr = a.getHour() - b.getHour();
 		   System.out.println(hr);
-	       mn = now.getMinute() - NewDateTime.getMinute();
+	       mn = a.getMinute() - b.getMinute();
 
-	       time = Period.between(now.toLocalDate(), NewDateTime.toLocalDate());
+	       time = Period.between(a.toLocalDate(), b.toLocalDate());
 
 	       System.out.print("Age is: "+time.getYears()+ " years,"+time.getMonths()+ " months, " +time.getDays()+ " days, "+hr+ " hours, " +mn+ " minutes old");
+	
+	       return time;
 	}
 
 	public static void main(String[] args) {
-		TimeDifference a = new TimeDifference();
-		TimeDifference.FormatDateString("2010-05-15 03:38:44");
-		TimeDifference.TimeDiffer();
-		System.out.println(time.getYears());
+		LocalDateTime b;
+		LocalDateTime a;
+		Period c;
+		a = LocalDateTime.now();
+		//TimeDifference a = new TimeDifference();
+		
+		b = TimeDifference.FormatDateString("2010-05-15 03:38:44");
+		c = TimeDifference.TimeDiffer(a,b);
+		System.out.println(c.getYears());
 		
 		
 		
