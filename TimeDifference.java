@@ -10,6 +10,9 @@ public class TimeDifference {
 	public static int hr;
 	public static int mn;
 	public static Period time;
+	public static LocalDateTime b;
+	public static LocalDateTime a;
+	public static Period c;
 	
 	public static LocalDateTime FormatDateString(String DateTimeTwo) throws DateTimeParseException{
 		 try {
@@ -35,9 +38,9 @@ public class TimeDifference {
 	}
 
 	public static void main(String[] args) {
-		LocalDateTime b;
-		LocalDateTime a;
-		Period c;
+//		LocalDateTime b;
+//		LocalDateTime a;
+//		Period c;
 		a = LocalDateTime.now();
 		//TimeDifference a = new TimeDifference();
 		

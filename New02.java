@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.event.*;
+import java.time.LocalDateTime;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -13,6 +14,7 @@ public class New02 extends JPanel implements ActionListener
 	JButton btnIcon;
 	//ImageIcon imgIcon;
 	RestAPIClient01 newreq = new RestAPIClient01();
+	TimeDifference td = new TimeDifference();
 	private JScrollPane scrollPane;
 
 	public New02()
@@ -66,6 +68,12 @@ public class New02 extends JPanel implements ActionListener
 		            respBody.append(pair.getKey() + " : " + pair.getValue() + "\n");
 		            //System.out.println(pair.getKey() + " : " + pair.getValue());
 		        }
+		        td.a = LocalDateTime.now();
+		        td.b = td.FormatDateString("2010-05-15 03:38:44");
+		        td.hr = td.a.getHour() - td.b.getHour();
+			    td.mn = td.a.getMinute() - td.b.getMinute();
+		        td.c = TimeDifference.TimeDiffer(td.a,td.b);
+		        respBody.append("Last scan was " + td.c.getYears() + " years, " + td.c.getDays()+ " days, "+td.hr+ " hours, "+td.mn+ " minutes ago." + "\n");
 				
 				
 			} catch (Exception e) {
