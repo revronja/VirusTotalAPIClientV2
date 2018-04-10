@@ -44,10 +44,10 @@ public class CSVWriter {
 			fileWriter.append(NEW_LINE_SEPARATOR);
 			
 			//Write a new student object list to the CSV file
-			for (CustomResponse response : responses) {
-				fileWriter.append(String.valueOf(response.getResponseCode()));
+			for (Object response : responses) {
+				fileWriter.append(String.valueOf(((CustomResponse) response).getResponseCode()));
 				fileWriter.append(COMMA_DELIMITER);
-				fileWriter.append(String.valueOf(response.getMessage()));
+				fileWriter.append(String.valueOf(((CustomResponse) response).getMessage()));
 //				fileWriter.append(COMMA_DELIMITER);
 //				fileWriter.append(student.getLastName());
 //				fileWriter.append(COMMA_DELIMITER);
