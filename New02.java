@@ -68,12 +68,12 @@ public class New02 extends JPanel implements ActionListener
 		            respBody.append(pair.getKey() + " : " + pair.getValue() + "\n");
 		            //System.out.println(pair.getKey() + " : " + pair.getValue());
 		        }
-		        td.a = LocalDateTime.now();
-		        td.b = td.FormatDateString("2010-05-15 03:38:44");
-		        td.hr = td.a.getHour() - td.b.getHour();
-			    td.mn = td.a.getMinute() - td.b.getMinute();
-		        td.c = TimeDifference.TimeDiffer(td.a,td.b);
-		        respBody.append("Last scan was " + td.c.getYears() + " years, " + td.c.getDays()+ " days, "+td.hr+ " hours, "+td.mn+ " minutes ago." + "\n");
+		        TimeDifference.a = LocalDateTime.now();
+		        TimeDifference.b = TimeDifference.FormatDateString("2010-05-15 03:38:44");
+		        TimeDifference.hr = TimeDifference.a.getHour() - TimeDifference.b.getHour();
+			    TimeDifference.mn = TimeDifference.a.getMinute() - TimeDifference.b.getMinute();
+		        TimeDifference.c = TimeDifference.TimeDiffer(TimeDifference.a,TimeDifference.b);
+		        respBody.append("Last scan was " + TimeDifference.c.getYears() + " years, " + TimeDifference.c.getDays()+ " days, "+TimeDifference.hr+ " hours, "+TimeDifference.mn+ " minutes ago." + "\n");
 				
 				
 			} catch (Exception e) {
